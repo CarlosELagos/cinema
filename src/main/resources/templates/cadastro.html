@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html xmlns="w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <title>Cadastro de Filme</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Cadastro de Filmes => Cinema de Cultura</h1>
+        <form th:action="@{/gravar}" th:object="${filme}" method="post">
+            <p>Titulo: <input type="text" th:field="*{titulo}"/> </p>
+            <p>Sinopse: <input type="text" th:field="*{sinopse}"/> </p>
+            <p>Genero: <input type="text" th:field="*{genero}"/> </p>
+            <p>Ano de lançamento: <input type="text" th:field="*{anoLancamento}"/> </p>
+            <p><input type="submit" value="cadastrar"/> </p>
+        </form>
+    </body>
+</html>

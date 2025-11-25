@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns="w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Detalhes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Detalhes</h1>
+        <p>ID: <span th:text="${filme.id}"></span></p>
+        <p>Titulo:<span th:text="${filme.titulo}"></span></p>
+        <p>Sinopse: <span th:text="${filme.sinopse}"></span>  </p>
+        <p>Genero: <span th:text="${filme.genero}" ></span> </p>
+        <p>Ano de Lançamento:<span th:text="${filme.anoLancamento}"></span> </p>
+
+        <h3>Deixe seu comentario e sua nota</h3>
+
+        <form th:action="@{/gravar-analises}" th:object="${analise}" method="post" >
+            <p> Comentario: <input type="text" th:field="*{detalhes}"/> </p>
+            <p> Nota: <input type="number" th:field="*{nota}"/> </p>
+            <p> <input type="hidden" th:field='${filme.id}'/> </p>
+            <p> <input type="submit" value="Enviar" /> </p>
+        </form>
+
+        <h2>Comentarios e notas do filme!!!</h2>
+    <li th:each="reg : ${analises}">
+        <p>Comentarios: <span th:text="${reg.detalhes}"></span> Nota: <span th:text="${reg.nota}"></span> </p>
+        </li>
+</body>
+</html>

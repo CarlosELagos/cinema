@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Filmes Cadastrados => Cinema Cultural</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Lista de Fimes Cadastrados</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Sinopse</th>
+                    <th>Genero</th>
+                    <th>Ano de Lançamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="filme : ${filmes}">
+                    <td th:text="${filme.id}"></td>
+                    <td th:text="${filme.titulo}"></td>
+                    <td th:text="${filme.sinopse}"></td>
+                    <td th:text="${filme.genero}"></td>
+                    <td th:text="${filme.anoLancamento}"></td>
+                    <td> <a th:href="@{'/detalhes?id=' + ${filme.id}}">+ Detalhes</a> </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p><a th:href="@{/cadastro}">Cadastrar + filme</a></p>
+    </body>
+</html>
