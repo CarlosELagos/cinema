@@ -16,7 +16,7 @@ public class FilmeService {
     //CRUD
     
     public Filme criar(Filme filme) {
-        filme.setId(null);
+//        filme.setId(null);
         filmeRepository.save(filme);
         return filme;
     }

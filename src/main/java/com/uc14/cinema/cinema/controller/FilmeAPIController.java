@@ -31,7 +31,7 @@ public class FilmeAPIController {
     }
     
     @GetMapping("/listaTudo")
-    public ResponseEntity<List> listar() {
+    public ResponseEntity<List<Filme>> listar() {
         List<Filme> listarTodosFilmes = filmeService.busca();
         return new ResponseEntity<>(listarTodosFilmes,HttpStatus.OK);
     }
@@ -39,7 +39,7 @@ public class FilmeAPIController {
     @GetMapping("/buscar/{id}")
     public ResponseEntity<Filme> buscar(@PathVariable Integer id) {
         Filme filmeLocalizado = filmeService.buscaId(id);
-        return new ResponseEntity<(filmeLocalizado,HttpStatus.OK);
+        return new ResponseEntity<>(filmeLocalizado,HttpStatus.OK);
     }
     
     @PutMapping("/atualizar/{id}")
@@ -49,7 +49,7 @@ public class FilmeAPIController {
     }
     
     @DeleteMapping("/excluir/{id}")
-    public ResponseEntity<Filme> excluir (@PatchVariable Integer id) {
+    public ResponseEntity<Filme> excluir (@PathVariable Integer id) {
         filmeService.excluir(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

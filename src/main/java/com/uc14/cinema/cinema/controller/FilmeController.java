@@ -47,39 +47,39 @@ public class FilmeController {
         return "lista";
     }
 
-    @GetMapping("/detalhes")
+//    @GetMapping("/detalhes")
 //    public String detalhes(Model model){
-    public String detalhe(Model model, @RequestParam String id){
-        Integer idFilme = Integer.parseInt(id);
-        Filme foundMovie = new Filme();
-        
-        for(Filme f : listaFilmes ){
-            if (f.getId() == idFilme ){
-                foundMovie = f;
-            }
-        }
-        
-        List<Analise> analisesFound = new ArrayList<>();
-        for (Analise an : listaAnalises){
-            if (an.getFilme().getId() == idFilme){
-                analisesFound.add(an);
-            }
-        }
-        
-        model.addAttribute("filme", foundMovie);
-        model.addAttribute("analise", new Analise());
-        model.addAttribute("analises", analisesFound);
-        
-        return "detalhes";
-    }
+//    public String detalhe(Model model, @RequestParam String id){
+//        Integer idFilme = Integer.parseInt(id);
+//        Filme foundMovie = new Filme();
+//        
+//        for(Filme f : listaFilmes ){
+//            if (f.getId() == idFilme ){
+//                foundMovie = f;
+//            }
+//        }
+//        
+//        List<Analise> analisesFound = new ArrayList<>();
+//        for (Analise an : listaAnalises){
+//            if (an.getFilme().getId() == idFilme){
+//                analisesFound.add(an);
+//            }
+////        }
+//        
+//        model.addAttribute("filme", foundMovie);
+//        model.addAttribute("analise", new Analise());
+//        model.addAttribute("analises", analisesFound);
+//        
+//        return "detalhes";
+//    }
     
-    @PostMapping("/gravar-analises")
-    public String gravaUsuario(@ModelAttribute Filme filme, @ModelAttribute Analise analise, Model model){
-        analise.setId(listaAnalises.size()+1);
-        analise.setFilme(filme);
-        listaAnalises.add(analise);
-        
-        return "redirect:/listador";
-    }
+//    @PostMapping("/gravar-analises")
+//    public String gravaUsuario(@ModelAttribute Filme filme, @ModelAttribute Analise analise, Model model){
+//        analise.setId(listaAnalises.size()+1);
+//        analise.setFilme(filme);
+//        listaAnalises.add(analise);
+//        
+//        return "redirect:/listador";
+//    }
 
 }
