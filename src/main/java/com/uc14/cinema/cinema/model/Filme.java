@@ -14,7 +14,7 @@ public class Filme {
 
     @Id //chave primaria
     @GeneratedValue(strategy = GenerationType.AUTO) //auto incremento
-    private int id;
+    private Integer id;
     private String titulo;
     private String sinopse;
     private String genero;
