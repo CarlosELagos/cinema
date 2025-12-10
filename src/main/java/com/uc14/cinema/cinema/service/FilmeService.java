@@ -26,8 +26,7 @@ public class FilmeService {
     }
     
     public void excluir(Integer id) {
-        Filme filmeLocalizado = buscaId(id);
-        filmeRepository.deleteById(filmeLocalizado.getId());
+        filmeRepository.deleteById(id);
     }
 
     public Filme buscaId (Integer id) {
