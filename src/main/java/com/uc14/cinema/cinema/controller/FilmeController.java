@@ -44,6 +44,12 @@ public class FilmeController {
         model.addAttribute("filme", new Filme());
         return "cadastro";
     }
+    
+    @GetMapping("/atualizaCadastro")
+    public String formularioAtualizacao(Model model) {
+        model.addAttribute("filme", new Filme());
+        return "atualizaCadastro";
+    }
 
     @PostMapping("/atualiza")
     public String atualizarFilme(@ModelAttribute Filme filme) {
