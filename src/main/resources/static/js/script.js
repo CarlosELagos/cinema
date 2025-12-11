@@ -75,3 +75,26 @@ window.onload = () => {
     const filmeId = document.getElementById("filmeId").value;
     carregarAnalises(filmeId);
 };
+
+function atualizarFilme(id) {
+    const atual = {
+        titulo: document.getElementById("titulo").value,
+        sinopse: document.getElementById("sinopse").value,
+        genero: document.getElementById("genero").value,
+        anoLancamento: document.getElementById("anoLancamento").value
+    };
+    fetch(`/filme/atualizar/${id}`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(atual)
+    })
+            .then (response => {
+                if(response.ok){
+                   alert("Atualizado!"); 
+                   window.location.href = "/listador";
+                } else {
+                    alert("não atualizado")
+                };
+                
+            });
+}

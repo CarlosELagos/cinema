@@ -29,6 +29,7 @@
                                     <td th:text="${filme.genero}"></td>
                                     <td th:text="${filme.anoLancamento}"></td>
                                     <td> <a th:href="@{'/detalhes?id=' + ${filme.id}}"> + Detalhes</a> </td>
+                                    <td> <a th:href="@{'/atualiza?id=' + ${filme.id}}">Atualizar dados</a> </td>
                                     <td> <a href="#" th:onclick="'excluirFilme(' + ${filme.id} + ')'" class="button1">🗑️ Excluir</a> </td>
                                 </tr>
                             </tbody>
@@ -42,6 +43,7 @@
                             <p><a th:href="@{/}">Pagina inicial</a></p>
                         </div>
                     </div>
+                    <ul id="listaAnalises" style="display:none;"></ul>
                     <script th:src="@{/js/script.js}"></script>
                 </body>
 

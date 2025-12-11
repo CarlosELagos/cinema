@@ -3,7 +3,7 @@
 <html xmlns="w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
     <head>
-        <title>Atualiza de Filme</title>
+        <title>Atualizador dos Filmes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -11,17 +11,32 @@
     </head>
     <body>
 
-        <h1 id="logo ">Atualiza cadastro => Cinema de Cultura</h1>
-        <form id="updatForm" th:object="${filme}">
-            <p>Titulo: <input type="text" th:field="*{titulo}"/> </p>
-            <p>Sinopse: <input type="text" th:field="*{sinopse}"/> </p>
-            <p>Genero: <input type="text" th:field="*{genero}"/> </p>
-            <p>Ano de lançamento: <input type="text" th:field="*{anoLancamento}"/> </p>
-            <p><button type="button" onclick="atualizarFilme([[${filme.id]])">Atualiza</button> </p>
-        </form>
+        <h1 id="logo">Atualização de cadastro => Cinema de Cultura</h1>
+        <div class="row">
+            <div class="col-6">
+                <h3 id="logo">Informações atuais sobre o filme:</h3>
+                <p>ID: <span th:text="${filme.id}"></span></p>
+                <p>Titulo:<span th:text="${filme.titulo}"></span></p>
+                <p>Sinopse: <span th:text="${filme.sinopse}"></span>  </p>
+                <p>Genero: <span th:text="${filme.genero}" ></span> </p>
+                <p>Ano de Lançamento:<span th:text="${filme.anoLancamento}"></span> </p>
+            </div>
+            <div class="col-6">
+                <h3 id="logo">Insira os dados para atualização:</h3>
+                <form id="updatForm" th:object="${filme}">
+                    <p>Titulo: <input type="text" th:field="*{titulo}"/> </p>
+                    <p>Sinopse: <input type="text" th:field="*{sinopse}"/> </p>
+                    <p>Genero: <input type="text" th:field="*{genero}"/> </p>
+                    <p>Ano de lançamento: <input type="text" th:field="*{anoLancamento}"/> </p>
+                    <p> <input type="hidden" id="filmeId" th:value="${filme.id}"/> </p>
+                    <p> <button type="button" th:onclick="'atualizarFilme(' + ${filme.id} + ')'">Atualiza</button> </p>
+                </form>
+            </div>
+        </div>
 
         <p><a th:href="@{/listador}">Lista</a></p>
         <p><a th:href="@{/}">Pagina inicial</a></p>
+        <ul id="listaAnalises" style="display:none;"></ul>
 
         <script th:src="@{/js/script.js}"></script>
     </body>

@@ -28,7 +28,6 @@ public class FilmeController {
 
 //    List<Filme> listaFilmes = new ArrayList<>();
 //    List<Analise> listaAnalises = new ArrayList<>();
-
     @GetMapping("/")
     public String home() {
         return "home";
@@ -44,14 +43,21 @@ public class FilmeController {
         model.addAttribute("filme", new Filme());
         return "cadastro";
     }
-    
+
     @GetMapping("/atualizaCadastro")
     public String formularioAtualizacao(Model model) {
         model.addAttribute("filme", new Filme());
         return "atualizaCadastro";
     }
 
-    @PostMapping("/atualiza")
+    @GetMapping("/atualiza")
+    public String AtualizaForm(@RequestParam Integer id, Model model) {
+        Filme filme = filmeService.buscaId(id);
+        model.addAttribute("filme", filme);
+        return "atualizaCadastro";
+    }
+
+    @PostMapping("/atualizaFilme")
     public String atualizarFilme(@ModelAttribute Filme filme) {
         filmeService.atualizar(filme.getId(), filme);
         return "redirect:/listador"; // volta para a lista
