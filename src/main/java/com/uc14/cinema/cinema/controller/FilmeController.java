@@ -3,6 +3,7 @@ package com.uc14.cinema.cinema.controller;
 import com.uc14.cinema.cinema.model.Analise;
 import com.uc14.cinema.cinema.model.Filme;
 import com.uc14.cinema.cinema.repository.FilmeRepository;
+import com.uc14.cinema.cinema.service.AnaliseService;
 import com.uc14.cinema.cinema.service.FilmeService;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,11 @@ public class FilmeController {
     FilmeRepository filmeRepository;
     @Autowired
     private FilmeService filmeService;
+    @Autowired
+    private AnaliseService analiseService;
 
-    List<Filme> listaFilmes = new ArrayList<>();
-    List<Analise> listaAnalises = new ArrayList<>();
+//    List<Filme> listaFilmes = new ArrayList<>();
+//    List<Analise> listaAnalises = new ArrayList<>();
 
     @GetMapping("/")
     public String home() {
@@ -41,20 +44,16 @@ public class FilmeController {
         model.addAttribute("filme", new Filme());
         return "cadastro";
     }
-    
-       @PostMapping("/atualiza")
+
+    @PostMapping("/atualiza")
     public String atualizarFilme(@ModelAttribute Filme filme) {
         filmeService.atualizar(filme.getId(), filme);
         return "redirect:/listador"; // volta para a lista
     }
 
-
-    
     @PostMapping("/gravar")
-    public String gravaFilme(@ModelAttribute Filme filme, Model model) {
-        filme.setId(listaFilmes.size() + 1);
-        listaFilmes.add(filme);
-
+    public String gravaFilme(@ModelAttribute Filme filme) {
+        filmeService.criar(filme);
         return "redirect:/listador";
     }
 
@@ -69,20 +68,8 @@ public class FilmeController {
 //    public String detalhes(Model model){
     public String detalhe(Model model, @RequestParam String id) {
         Integer idFilme = Integer.parseInt(id);
-        Filme foundMovie = new Filme();
-
-        for (Filme f : listaFilmes) {
-            if (f.getId() == idFilme) {
-                foundMovie = f;
-            }
-        }
-
-        List<Analise> analisesFound = new ArrayList<>();
-        for (Analise an : listaAnalises) {
-            if (an.getFilme().getId() == idFilme) {
-                analisesFound.add(an);
-            }
-        }
+        Filme foundMovie = filmeService.buscaId(idFilme);
+        List<Analise> analisesFound = analiseService.listando(idFilme);
 
         model.addAttribute("filme", foundMovie);
         model.addAttribute("analise", new Analise());
@@ -92,12 +79,11 @@ public class FilmeController {
     }
 
     @PostMapping("/gravar-analises")
-    public String gravaUsuario(@ModelAttribute Filme filme, @ModelAttribute Analise analise, Model model) {
-        analise.setId(listaAnalises.size() + 1);
+    public String gravaUsuario(@RequestParam Integer filmeId, @ModelAttribute Analise analise) {
+        Filme filme = filmeService.buscaId(filmeId);
         analise.setFilme(filme);
-        listaAnalises.add(analise);
-
-        return "redirect:/listador";
+        analiseService.gerar(analise);
+        return "redirect:/detalhes?id=" + filmeId;
     }
 
     @PostMapping("/filmes/{id}/delete")

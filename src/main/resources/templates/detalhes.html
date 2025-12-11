@@ -17,16 +17,27 @@
 
         <h3>Deixe seu comentario e sua nota</h3>
 
-        <form th:action="@{/gravar-analises}" th:object="${analise}" method="post" >
-            <p> Comentario: <input type="text" th:field="*{detalhes}"/> </p>
-            <p> Nota: <input type="number" th:field="*{nota}"/> </p>
-            <p> <input type="hidden" th:field='${filme.id}'/> </p>
-            <p> <input type="submit" value="Enviar" /> </p>
+        <form onsubmit="event.preventDefault(); adicionarAnalise();" >
+            <p> Comentario: <input type="text" id="detalhes"/> </p>
+            <p> Nota: <input type="number" id="nota"/> </p>
+            <p> <input type="hidden" id="filmeId" th:value="${filme.id}"/> </p>
+            <p> <button type="submit">Confirma</button> </p>
         </form>
 
         <h2>Comentarios e notas do filme!!!</h2>
-    <li th:each="reg : ${analises}">
+        <ul id="listaAnalises"></ul>
+  <!--  <li th:each="reg : ${analises}">
         <p>Comentarios: <span th:text="${reg.detalhes}"></span> Nota: <span th:text="${reg.nota}"></span> </p>
-        </li>
+        </li> -->
+                <div class="row">
+            <div class="col-6">
+                <p><a th:href="@{/cadastro}">Cadastrar + filme</a></p>
+            </div>
+            <div class="col-6">
+                <p><a th:href="@{/}">Pagina inicial</a></p>
+            </div>
+        </div>
+        
+        <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

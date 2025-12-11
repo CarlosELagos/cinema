@@ -28,8 +28,8 @@
                         <td th:text="${filme.sinopse}"></td>
                         <td th:text="${filme.genero}"></td>
                         <td th:text="${filme.anoLancamento}"></td>
-                        <td> <a th:href="@{'/detalhes?id=' + ${filme.id}}">+ Detalhes</a> </td>
-                        <td> <a href="#" onclick="excluirFilme(${filme.id})" class="button1">🗑️ Excluir</a> </td>
+                        <td> <a th:href="@{'/detalhes?id=' + ${filme.id}}"> + Detalhes</a> </td>
+                        <td> <a href="#" th:onclick="'excluirFilme(' + ${filme.id} + ')'" class="button1">🗑️ Excluir</a> </td>
                     </tr>
                 </tbody>
             </table>

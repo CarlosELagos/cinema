@@ -48,10 +48,10 @@ public class FilmeAPIController {
         return new ResponseEntity<>(filmeAtualizado, HttpStatus.OK);
     }
     
-    @DeleteMapping("/filme/excluir/{id}")
+    @DeleteMapping("/excluir/{id}")
     public ResponseEntity<Void> excluir (@PathVariable Integer id) {
         filmeService.excluir(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
 }
