@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Preferencias</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body class="body">
+        <h1>informe suas preferencias</h1>
+        <form th:action="@{/preferencias}" method="POST">
+
+            <p><label for="selEstilo">seu esquema de cores</label>
+                <select name="estilo" id="selEstilo">
+                    <option value="claro"> Tema Claro</option>
+                    <option value="escuro">Tema Escuro</option>
+                </select>
+            </p>
+            <p><input type="submit" value="OK"/></p>
+        </form>
+    </body>
+</html>

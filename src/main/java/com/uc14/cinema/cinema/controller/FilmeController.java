@@ -26,17 +26,15 @@ public class FilmeController {
     @Autowired
     private AnaliseService analiseService;
 
-//    List<Filme> listaFilmes = new ArrayList<>();
-//    List<Analise> listaAnalises = new ArrayList<>();
-    @GetMapping("/")
-    public String home() {
-        return "home";
-    }
+//    @GetMapping("/")
+//    public String home() {
+//        return "home";
+//    }
 
-    @GetMapping("/inicio")
-    public String inicio() {
-        return "home";
-    }
+//    @GetMapping("/inicio")
+//    public String inicio() {
+//        return "home";
+//    }
 
     @GetMapping("/cadastro")
     public String formulario(Model model) {
@@ -102,6 +100,16 @@ public class FilmeController {
     public String deletarFilme(@PathVariable Integer id) {
         filmeRepository.deleteById(id);
         return "redirect:/";
+    }
+
+    @GetMapping("/excluir-filme")
+    public String excluirFilme(Model model, @RequestParam String id) {
+        Integer idFilme = Integer.parseInt(id);
+
+        analiseService.excluirTodasAnalisesPorFilme(idFilme);
+        filmeService.excluir(idFilme);
+
+        return "redirect:/listador";
     }
 
 }

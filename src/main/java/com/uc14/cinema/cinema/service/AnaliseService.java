@@ -22,4 +22,14 @@ public class AnaliseService {
     return analiseRepository.findByFilmeId(idFilme);
 }
     
+    public void excluirTodasAnalisesPorFilme(Integer idFilme){
+        for(Analise reg: listando(idFilme)){
+        excluirAnalise(reg.getId());
+        }
+    }
+    
+    public void excluirAnalise(Integer idAnalise){
+        Analise objEncontrado = analiseRepository.findById(idAnalise).orElseThrow();
+        analiseRepository.deleteById(objEncontrado.getId());
+    }
 }

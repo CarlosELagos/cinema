@@ -13,6 +13,7 @@ function cadastrarFilme() {
             .then(response => {
                 if (response.ok) {
                     alert("filme cadastrado");
+                    window.location.href = "/listador";
                 } else {
                     alert("filme não cadastrado");
                 }

@@ -5,17 +5,32 @@
         <title>Cinema Cultural</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link th:href="@{/css/{tema}.css(tema=${css})}" rel="stylesheet" type="text/css"/> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
-    <body>
-        <h1 id="logo">Sistema do Cinema Cultural</h1>
+    <body class="body">
 
-        <nav class="selection">
-            <a th:href="@{/inicio}">Inicio</a> 
-            <a th:href="@{/cadastro}">Cadastrar novo filme</a> 
-            <a th:href="@{/atualizaCadastro}">Atualizar cadastro de filme</a>
-            <a th:href="@{/listador}">Lista de filmes cadastrados</a> 
-        </nav>
+        <h1 id="logo">Sistema do Cinema Cultural</h1>
+        <div class="row">
+                    <p>Tema: <strong th:text="${css}" /></p> 
+                        //seletor de estilo.
+            <form th:action="@{/preferencias}" method="POST">
+
+                <p><label for="selEstilo">seu esquema de cores</label>
+                    <select name="estilo" id="selEstilo">
+                        <option value="claro"> Tema Claro</option>
+                        <option value="escuro">Tema Escuro</option>
+                    </select>
+                </p>
+                <p><input type="submit" value="OK"/></p>
+            </form>
+        </div>
+        <div class="row">
+            <nav class="selection">
+                <a th:href="@{/}">Inicio</a> 
+                <a th:href="@{/cadastro}">Cadastrar novo filme</a> 
+                <a th:href="@{/listador}">Lista de filmes cadastrados</a> 
+            </nav>
+        </div>
     </body>
 </html>
