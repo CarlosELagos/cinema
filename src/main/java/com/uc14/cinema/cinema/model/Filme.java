@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name="Filme")
+@Table(name="filme")
 public class Filme {
 
     @Id //chave primaria
